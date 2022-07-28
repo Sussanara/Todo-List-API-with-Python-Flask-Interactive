@@ -1,23 +1,29 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, json
+
 app = Flask(__name__)
 
-todos=[ {"label": "My first task", "done": False}]
+todos = [
+    { "label": "Terminar este trabajo", "done": False },
+    { "label": "Tomar cafecito", "done": False }
+]
+@app.route('/')
+def nothing():
+    return 'nothing here, proceed to /todos'
 
 @app.route('/todos', methods=['GET'])
 def hello_world():
-    json_text = jsonify(todos)
-    return json_text
+    
+    json_object = jsonify(todos)
+    
+    return json_object
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     request_body = request.data
-    decoded_object = json.loads(request_body)
+    to_append = json.loads(request_body)
     print("Incoming request with the following body", request_body)
-    todos.append(decoded_object)
+    todos.append(to_append)
     return jsonify(todos)
-
-
-
 
 
 
