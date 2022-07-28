@@ -3,8 +3,8 @@ from flask import Flask, jsonify, request, json
 app = Flask(__name__)
 
 todos = [
-    { "label": "Terminar este trabajo", "done": False },
-    { "label": "Tomar cafecito", "done": False }
+    { "label": "My first task", "done": False },
+    { "label": "My second task", "done": False }
 ]
 @app.route('/')
 def nothing():
